@@ -1,4 +1,10 @@
-let ws = new WebSocket("ws://"+window.location.hostname+"/api/ws");
+let ws 
+
+if (window.location.protocol == "https:")
+	ws = new WebSocket("wss://"+window.location.hostname+"/api/ws");
+else
+	ws = new WebSocket("ws://"+window.location.hostname+"/api/ws");
+
 ws.sendObj = (m => ws.send(JSON.stringify(m)));
 
 ws.onopen = function (event) {
